@@ -7,6 +7,21 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class SearchSlangPanel extends JPanel {
+	private JTextArea textArea;
+
+    private void updateTextArea(TrieNode searchNode) {
+        if (searchNode != null) {
+            Slang searchSlang = searchNode.getSlang();
+            if (searchSlang != null) {
+                textArea.setText(searchSlang.getFullData());
+            } else {
+                textArea.setText("No definition");
+            }
+        } else {
+            textArea.setText("No definition");
+        }
+    }
+    
     public SearchSlangPanel(Trie trie, CardLayout cardLayout) {
         setLayout(new BorderLayout());
 
@@ -22,7 +37,10 @@ public class SearchSlangPanel extends JPanel {
 
         JTextField textField = new JTextField(20);
         JComboBox<String> comboBox = new JComboBox<>();
-        JTextArea textArea = new JTextArea(7, 30);
+        comboBox.addItem("");
+        comboBox.setSelectedIndex(0);
+        
+        textArea = new JTextArea(7, 30);
         textArea.setEditable(false);
 
         textField.getDocument().addDocumentListener(new DocumentListener() {
@@ -45,6 +63,7 @@ public class SearchSlangPanel extends JPanel {
                 String curText = textField.getText();
                 TrieNode searchNode = trie.searchSlang(curText);
                 comboBox.removeAllItems();
+                comboBox.addItem("");
                 if (searchNode != null) {
                     List<Slang> slangList = searchNode.getListHintSlang();
                     for (Slang slang : slangList) {
@@ -53,8 +72,18 @@ public class SearchSlangPanel extends JPanel {
                 }
             }
         });
+        
+        comboBox.addActionListener(e -> {
+        	if(comboBox.getSelectedIndex() != 0) {
+                String curText = (String) comboBox.getSelectedItem();
+                if (curText != null) {
+                    TrieNode searchNode = trie.searchSlang(curText);
+                    updateTextArea(searchNode);
+                }
+        		
+        	}
+        });
 
-        // Thêm nút Search
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(new ActionListener() {
             @Override
@@ -62,19 +91,6 @@ public class SearchSlangPanel extends JPanel {
                 String curText = textField.getText();
                 TrieNode searchNode = trie.searchSlang(curText);
                 updateTextArea(searchNode);
-            }
-
-            private void updateTextArea(TrieNode searchNode) {
-                if (searchNode != null) {
-                    Slang searchSlang = searchNode.getSlang();
-                    if (searchSlang != null) {
-                        textArea.setText(searchSlang.getFullData());
-                    } else {
-                        textArea.setText("No definition");
-                    }
-                } else {
-                    textArea.setText("No definition");
-                }
             }
         });
 
