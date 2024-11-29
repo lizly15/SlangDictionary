@@ -8,12 +8,15 @@ import java.util.List;
 
 public class SearchSlangPanel extends JPanel {
 	private JTextArea textArea;
+	private Trie trie;
 
-    private void updateTextArea(TrieNode searchNode) {
+    private void updateTextArea(TrieNode searchNode, HistoryPanel historyPanel) {
         if (searchNode != null) {
             Slang searchSlang = searchNode.getSlang();
             if (searchSlang != null) {
                 textArea.setText(searchSlang.getFullData());
+                historyPanel.addHistory(searchSlang.getFullData());
+                
             } else {
                 textArea.setText("No definition");
             }
@@ -22,7 +25,8 @@ public class SearchSlangPanel extends JPanel {
         }
     }
     
-    public SearchSlangPanel(Trie trie, CardLayout cardLayout) {
+    public SearchSlangPanel(Trie _trie, CardLayout cardLayout, HistoryPanel historyPanel) {
+    	trie = _trie;
         setLayout(new BorderLayout());
 
         JPanel backPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -78,7 +82,7 @@ public class SearchSlangPanel extends JPanel {
                 String curText = (String) comboBox.getSelectedItem();
                 if (curText != null) {
                     TrieNode searchNode = trie.searchSlang(curText);
-                    updateTextArea(searchNode);
+                    updateTextArea(searchNode, historyPanel);
                 }
         		
         	}
@@ -90,7 +94,7 @@ public class SearchSlangPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String curText = textField.getText();
                 TrieNode searchNode = trie.searchSlang(curText);
-                updateTextArea(searchNode);
+                updateTextArea(searchNode, historyPanel);
             }
         });
 

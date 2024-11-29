@@ -1,6 +1,8 @@
 import java.awt.CardLayout;
 
 import javax.swing.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -16,11 +18,13 @@ public class MainApp {
         dict.readFiles(slangTrie);
 
         MainMenuPanel mainMenuPanel = new MainMenuPanel(cardLayout);
-        SearchSlangPanel searchSlangPanel = new SearchSlangPanel(slangTrie, cardLayout);
-
+        HistoryPanel historyPanel = new HistoryPanel(cardLayout);
+        SearchSlangPanel searchSlangPanel = new SearchSlangPanel(slangTrie, cardLayout, historyPanel);
+        
         mainPanel.add(mainMenuPanel, "MainMenu");
         mainPanel.add(searchSlangPanel, "SearchSlang");
-
+        mainPanel.add(historyPanel, "History");
+        
         frame.add(mainPanel);
         frame.setVisible(true);
     }

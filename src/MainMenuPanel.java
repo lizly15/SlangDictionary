@@ -21,6 +21,13 @@ public class MainMenuPanel extends JPanel {
 
         JButton searchByDefinitionButton = new JButton("Search by definition");
         JButton historyButton = new JButton("History");
+        historyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(getParent(), "History");
+            }
+        });
+        
         JButton onThisDayButton = new JButton("On this day slang word");
         JButton gameButton = new JButton("Game");
         JButton settingButton = new JButton("Setting");
