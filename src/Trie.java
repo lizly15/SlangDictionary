@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Trie {
 	private TrieNode root;
@@ -31,4 +32,16 @@ public class Trie {
 		}
 		return curNode;
 	}
+	
+	public Slang randomSlang() {
+        TrieNode curNode = root;
+        
+        while(true) {
+        	TrieNode nextNode = curNode.randomNextNode();
+        	if(nextNode == null) break;
+        	curNode = nextNode;
+        }
+		
+		return curNode.getSlang();
+    }
 }

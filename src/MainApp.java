@@ -1,8 +1,6 @@
 import java.awt.CardLayout;
 
 import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -16,6 +14,8 @@ public class MainApp {
         Trie slangTrie = new Trie(); 
         DictionaryDataStructure dict = new DictionaryDataStructure();
         dict.readFiles(slangTrie);
+        
+        slangTrie.randomSlang().printData();
 
         MainMenuPanel mainMenuPanel = new MainMenuPanel(cardLayout);
         HistoryPanel historyPanel = new HistoryPanel(cardLayout);

@@ -22,7 +22,7 @@ public class DictionaryDataStructure {
                 int countBackticks = countBackticks(line);
                 if (countBackticks == 1) {
                     Slang s = new Slang(line);
-                    s.printData();
+//                    s.printData();
                     trie.addNewSlang(s);
                 }
             }

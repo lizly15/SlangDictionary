@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class TrieNode {
     private Character label;
@@ -58,5 +59,22 @@ public class TrieNode {
             }
         }
         return null;
+    }
+    
+    public TrieNode randomNextNode() {
+        Random random = new Random();
+        
+        if (slang != null) {
+            if (random.nextInt(4) == 0) { 
+                return null;
+            }
+        }
+
+        if (listNextNode.isEmpty()) {
+            return null; 
+        }
+        
+        int randomIndex = random.nextInt(listNextNode.size());
+        return listNextNode.get(randomIndex); 
     }
 }
