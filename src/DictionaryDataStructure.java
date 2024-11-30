@@ -1,18 +1,20 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.FileReader;
 import java.util.Arrays;
 import java.util.List;
 
 public class DictionaryDataStructure {
-    private static final List<String> FILE_PATHS = Arrays.asList(
-        "src/slang.txt"
-    );
+    private String filePath;
+    
+    public DictionaryDataStructure(String filePath) {
+    	this.filePath = filePath;
+    }
 
     public void readFiles(Trie trie) {
-        for (String filePath : FILE_PATHS) {
-            readFile(filePath, trie);
-        }
+    	readFile(filePath, trie);
     }
 
     private void readFile(String filePath, Trie trie) {
@@ -26,8 +28,24 @@ public class DictionaryDataStructure {
                     trie.addNewSlang(s);
                 }
             }
+            return;
         } catch (IOException e) {
-            System.err.println("Lỗi khi đọc tệp: " + filePath);
+            System.err.println("Error when reading file: " + filePath);
+        }
+        
+        try (InputStream inputStream = getClass().getResourceAsStream("/slang.txt");
+                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                int countBackticks = countBackticks(line);
+                if (countBackticks == 1) {
+                    Slang s = new Slang(line);
+//                    s.printData();
+                    trie.addNewSlang(s);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error when reading file: " + filePath);
         }
     }
 

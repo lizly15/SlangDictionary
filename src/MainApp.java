@@ -7,12 +7,24 @@ public class MainApp {
         JFrame frame = new JFrame("Slang Dictionary");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 700);
+        
+     // Hộp thoại nhập đường dẫn file
+        String filePath = JOptionPane.showInputDialog(frame, 
+                "Please enter the path to slang data:", 
+                "File Path Input", 
+                JOptionPane.PLAIN_MESSAGE);
+
+        // Kiểm tra nếu người dùng đã nhập đường dẫn
+        if (filePath == null || filePath.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "File path cannot be empty. Exiting.");
+            System.exit(1);
+        }
 
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
 
         Trie slangTrie = new Trie(); 
-        DictionaryDataStructure dict = new DictionaryDataStructure();
+        DictionaryDataStructure dict = new DictionaryDataStructure(filePath);
         dict.readFiles(slangTrie);
 
         HistoryPanel historyPanel = new HistoryPanel(cardLayout);
