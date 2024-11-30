@@ -69,7 +69,7 @@ public class GamePanel extends JPanel {
         questions = new ArrayList<>();
         Random random = new Random();
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             boolean isSlangQuestion = random.nextBoolean();
             List<Slang> options = new ArrayList<>();
             while (options.size() < 4) {

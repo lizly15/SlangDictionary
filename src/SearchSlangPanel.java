@@ -31,6 +31,7 @@ public class SearchSlangPanel extends JPanel {
     
     public SearchSlangPanel(Trie _trie, CardLayout cardLayout, HistoryPanel historyPanel) {
     	trie = _trie;
+        
         setLayout(new BorderLayout());
 
         JPanel backPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));

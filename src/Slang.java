@@ -6,17 +6,31 @@ public class Slang {
 	private String word;
 	private List<String> meanings;
 	
+	public Slang() {
+		this.meanings = new ArrayList<String>(); 
+	}
+	
 	public Slang(String data) {
         String[] parts = data.split("`", 2);
         if (parts.length == 2) {
             word = parts[0].trim();
-            meanings = splitMeanings(parts[1].trim());
+            this.meanings = new ArrayList<String>(); 
+            List<String> tem = splitMeanings(parts[1].trim());
+            for(String def: tem) {
+            	this.meanings.add(def);
+            }
         }
     }
 	
 	public Slang(String word, String meaning) {
+		this.meanings = new ArrayList<String>(); 
         this.word = word;
         this.meanings.add(meaning);
+    }
+	
+	public Slang(String word, List<String> meanings) {
+        this.word = word;
+        this.meanings = meanings;
     }
 	
 	private List<String> splitMeanings(String data) {

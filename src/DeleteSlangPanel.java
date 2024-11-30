@@ -2,18 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
-public class AddSlangPanel extends JPanel {
+public class DeleteSlangPanel extends JPanel {
     private JTextField slangInput;
     private JTextArea definitionArea;
-    private JTextField newDefinitionInput;
     private JButton searchButton;
-    private JButton saveButton;
-    private JButton backButton; // Nút Back
+    private JButton deleteButton;
+    private JButton backButton;
     private Trie trie;
 
-    public AddSlangPanel(Trie trie) {
+    public DeleteSlangPanel(Trie trie) {
         this.trie = trie;
         setLayout(new BorderLayout());
 
@@ -21,26 +19,21 @@ public class AddSlangPanel extends JPanel {
         slangInput = new JTextField(20); 
         inputPanel.add(new JLabel("Enter Slang:"));
         inputPanel.add(slangInput);
-        
+
         searchButton = new JButton("Search");
         inputPanel.add(searchButton);
-        
+
+        deleteButton = new JButton("Delete");
+        inputPanel.add(deleteButton);
+
         backButton = new JButton("Back");
-        inputPanel.add(backButton);
+        inputPanel.add(backButton); 
 
         add(inputPanel, BorderLayout.NORTH);
 
-        definitionArea = new JTextArea(2, 30);
+        definitionArea = new JTextArea(5, 30); 
         definitionArea.setEditable(false);
         add(new JScrollPane(definitionArea), BorderLayout.CENTER);
-
-        JPanel newDefinitionPanel = new JPanel();
-        newDefinitionInput = new JTextField(20); 
-        newDefinitionPanel.add(new JLabel("New Definition:"));
-        newDefinitionPanel.add(newDefinitionInput);
-        saveButton = new JButton("Save");
-        newDefinitionPanel.add(saveButton);
-        add(newDefinitionPanel, BorderLayout.SOUTH);
 
         searchButton.addActionListener(new ActionListener() {
             @Override
@@ -49,10 +42,10 @@ public class AddSlangPanel extends JPanel {
             }
         });
 
-        saveButton.addActionListener(new ActionListener() {
+        deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                saveDefinition();
+                deleteSlang();
             }
         });
 
@@ -75,40 +68,34 @@ public class AddSlangPanel extends JPanel {
                 if (searchSlang != null) {
                     definitionArea.setText(searchSlang.getFullData());
                 } else {
-                    definitionArea.setText("No definition");
+                    definitionArea.setText("No definition found.");
                 }
             } else {
-                definitionArea.setText("No definition");
+                definitionArea.setText("Slang does not exist.");
             }
+        } else {
+            definitionArea.setText("Please enter a slang.");
         }
     }
 
-    private void saveDefinition() {
+    private void deleteSlang() {
         String slang = slangInput.getText().trim();
-        String newDefinition = newDefinitionInput.getText().trim();
-
-        if (!slang.isEmpty() && !newDefinition.isEmpty()) {
+        if (!slang.isEmpty()) {
             TrieNode searchNode = trie.searchSlang(slang);
             if (searchNode != null && searchNode.getSlang() != null) {
                 int response = JOptionPane.showConfirmDialog(this, 
-                        "Slang already exists. Do you want to overwrite the existing definition or add a new one?", 
-                        "Overwrite or Add", 
+                        "Are you sure you want to delete the slang: " + slang + "?", 
+                        "Confirm Delete", 
                         JOptionPane.YES_NO_OPTION);
                 if (response == JOptionPane.YES_OPTION) {
-                	searchNode.getSlang().setMeanings(newDefinition);
-                    JOptionPane.showMessageDialog(this, "Definition updated successfully.");
-                } else {
-                	searchNode.getSlang().addMeanings(newDefinition);
-                    JOptionPane.showMessageDialog(this, "New definition added successfully.");
+                	searchNode.setSlang(null);
+                    definitionArea.setText("Slang '" + slang + "' has been deleted.");
                 }
             } else {
-                Slang newSlang = new Slang(slang, newDefinition);
-                trie.addNewSlang(newSlang);
-                JOptionPane.showMessageDialog(this, "Slang added successfully.");
+                JOptionPane.showMessageDialog(this, "Slang does not exist.");
             }
-            newDefinitionInput.setText(""); 
         } else {
-            JOptionPane.showMessageDialog(this, "Please enter both slang and definition.");
+            JOptionPane.showMessageDialog(this, "Please enter a slang.");
         }
     }
 }

@@ -49,7 +49,7 @@ public class MainMenuPanel extends JPanel {
                 cardLayout.show(getParent(), "Game");
             }
         });
-        JButton addButton = new JButton("Add slang");
+        JButton addButton = new JButton("Add/Modify slang");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,8 +57,13 @@ public class MainMenuPanel extends JPanel {
             }
         });
         
-        JButton modifyButton = new JButton("Modify slang");
         JButton delButton = new JButton("Delete slang");
+        delButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(getParent(), "DelSlang");
+            }
+        });
 
         gbc.gridy = 0;
         add(searchByWordButton, gbc);
@@ -79,9 +84,6 @@ public class MainMenuPanel extends JPanel {
         add(addButton, gbc);
         
         gbc.gridy = 6;
-        add(modifyButton, gbc);
-        
-        gbc.gridy = 7;
         add(delButton, gbc);
     }
 }
