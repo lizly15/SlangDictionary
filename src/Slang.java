@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +14,11 @@ public class Slang {
         }
     }
 	
+	public Slang(String word, String meaning) {
+        this.word = word;
+        this.meanings.add(meaning);
+    }
+	
 	private List<String> splitMeanings(String data) {
 		return Arrays.asList(data.split("\\|"));
 	}
@@ -23,6 +29,15 @@ public class Slang {
 
     public List<String> getMeanings() {
         return meanings;
+    }
+    
+    public void addMeanings(String meaning) {
+        this.meanings.add(meaning);
+    }
+    
+    public void setMeanings(String meaning) {
+    	this.meanings.clear();
+        this.meanings.add(meaning);
     }
     
     public String getDefinition() {

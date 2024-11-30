@@ -28,6 +28,14 @@ public class TrieNode {
         return slang;
     }
     
+    public void addMeanings(String meaning) {
+        this.slang.addMeanings(meaning);
+    }
+    
+    public void setMeanings(String meaning) {
+    	this.slang.setMeanings(meaning);
+    }
+    
     public void setParNode(TrieNode parNode) {
     	this.parNode = parNode;
     }

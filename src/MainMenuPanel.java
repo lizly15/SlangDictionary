@@ -50,6 +50,13 @@ public class MainMenuPanel extends JPanel {
             }
         });
         JButton addButton = new JButton("Add slang");
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(getParent(), "AddSlang");
+            }
+        });
+        
         JButton modifyButton = new JButton("Modify slang");
         JButton delButton = new JButton("Delete slang");
 

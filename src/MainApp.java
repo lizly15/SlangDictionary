@@ -21,6 +21,7 @@ public class MainApp {
         OnThisDaySlangPanel onThisDaySlangPanel = new OnThisDaySlangPanel(slangTrie, cardLayout);
         GamePanel gamePanel = new GamePanel(slangTrie, cardLayout);
         MainMenuPanel mainMenuPanel = new MainMenuPanel(cardLayout);
+        AddSlangPanel addSlangPanel = new AddSlangPanel(slangTrie);
         
         mainPanel.add(mainMenuPanel, "MainMenu");
         mainPanel.add(searchSlangPanel, "SearchSlang");
@@ -28,6 +29,7 @@ public class MainApp {
         mainPanel.add(historyPanel, "History");
         mainPanel.add(onThisDaySlangPanel, "OnThisDaySlang");
         mainPanel.add(gamePanel, "Game");
+        mainPanel.add(addSlangPanel, "AddSlang");
         
         frame.add(mainPanel);
         frame.setVisible(true);
