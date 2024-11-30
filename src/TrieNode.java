@@ -37,7 +37,8 @@ public class TrieNode {
     }
     
     public void addHintSlang(Slang s) {
-    	listHintSlang.add(s);
+    	if (!listHintSlang.contains(s))
+    		listHintSlang.add(s);
     }
     
     public List<Slang> getListHintSlang() {

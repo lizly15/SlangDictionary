@@ -17,12 +17,14 @@ public class MainApp {
 
         HistoryPanel historyPanel = new HistoryPanel(cardLayout);
         SearchSlangPanel searchSlangPanel = new SearchSlangPanel(slangTrie, cardLayout, historyPanel);
+        SearchSlangByDefPanel searchSlangByDefPanel = new SearchSlangByDefPanel(slangTrie, cardLayout, historyPanel);
         OnThisDaySlangPanel onThisDaySlangPanel = new OnThisDaySlangPanel(slangTrie, cardLayout);
         GamePanel gamePanel = new GamePanel(slangTrie, cardLayout);
         MainMenuPanel mainMenuPanel = new MainMenuPanel(cardLayout);
         
         mainPanel.add(mainMenuPanel, "MainMenu");
         mainPanel.add(searchSlangPanel, "SearchSlang");
+        mainPanel.add(searchSlangByDefPanel, "SearchSlangByDef");
         mainPanel.add(historyPanel, "History");
         mainPanel.add(onThisDaySlangPanel, "OnThisDaySlang");
         mainPanel.add(gamePanel, "Game");

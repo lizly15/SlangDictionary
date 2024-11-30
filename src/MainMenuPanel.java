@@ -20,6 +20,13 @@ public class MainMenuPanel extends JPanel {
         });
 
         JButton searchByDefinitionButton = new JButton("Search by definition");
+        searchByDefinitionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(getParent(), "SearchSlangByDef");
+            }
+        });
+        
         JButton historyButton = new JButton("History");
         historyButton.addActionListener(new ActionListener() {
             @Override
