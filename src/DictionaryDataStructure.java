@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DictionaryDataStructure {
     private static final List<String> FILE_PATHS = Arrays.asList(
-        "D:\\Java\\SlangDictionary\\src\\slang.txt"
+        "src/slang.txt"
     );
 
     public void readFiles(Trie trie) {
