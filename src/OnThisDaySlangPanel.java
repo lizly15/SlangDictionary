@@ -5,6 +5,10 @@ public class OnThisDaySlangPanel extends JPanel {
     private JTextArea slangTextArea;
     private CardLayout cardLayout;
     private Trie trie;
+	
+	public void updateTrie(Trie trie) {
+		this.trie = trie;
+	}
 
     public OnThisDaySlangPanel(Trie trie, CardLayout cardLayout) {
         this.cardLayout = cardLayout;

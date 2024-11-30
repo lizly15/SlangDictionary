@@ -14,6 +14,10 @@ public class GamePanel extends JPanel {
     private int score;
     private List<Question> questions;
     private Trie trie;
+	
+	public void updateTrie(Trie trie) {
+		this.trie = trie;
+	}
 
     public GamePanel(Trie trie, CardLayout cardLayout) {
         this.trie = trie;

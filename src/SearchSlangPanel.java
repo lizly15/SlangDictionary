@@ -9,6 +9,10 @@ import java.util.List;
 public class SearchSlangPanel extends JPanel {
 	private JTextArea textArea;
 	private Trie trie;
+	
+	public void updateTrie(Trie trie) {
+		this.trie = trie;
+	}
 
     private void updateTextArea(TrieNode searchNode, HistoryPanel historyPanel) {
         if (searchNode != null) {

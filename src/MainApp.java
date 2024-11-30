@@ -6,7 +6,7 @@ public class MainApp {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Slang Dictionary");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 400);
+        frame.setSize(800, 700);
 
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);

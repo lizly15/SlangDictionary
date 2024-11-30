@@ -42,7 +42,9 @@ public class MainMenuPanel extends JPanel {
                 cardLayout.show(getParent(), "Game");
             }
         });
-        JButton settingButton = new JButton("Setting");
+        JButton addButton = new JButton("Add slang");
+        JButton modifyButton = new JButton("Modify slang");
+        JButton delButton = new JButton("Delete slang");
 
         gbc.gridy = 0;
         add(searchByWordButton, gbc);
@@ -60,6 +62,12 @@ public class MainMenuPanel extends JPanel {
         add(gameButton, gbc);
         
         gbc.gridy = 5;
-        add(settingButton, gbc);
+        add(addButton, gbc);
+        
+        gbc.gridy = 6;
+        add(modifyButton, gbc);
+        
+        gbc.gridy = 7;
+        add(delButton, gbc);
     }
 }
