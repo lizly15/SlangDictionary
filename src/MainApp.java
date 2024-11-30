@@ -15,15 +15,17 @@ public class MainApp {
         DictionaryDataStructure dict = new DictionaryDataStructure();
         dict.readFiles(slangTrie);
 
-        MainMenuPanel mainMenuPanel = new MainMenuPanel(cardLayout);
         HistoryPanel historyPanel = new HistoryPanel(cardLayout);
         SearchSlangPanel searchSlangPanel = new SearchSlangPanel(slangTrie, cardLayout, historyPanel);
         OnThisDaySlangPanel onThisDaySlangPanel = new OnThisDaySlangPanel(slangTrie, cardLayout);
+        GamePanel gamePanel = new GamePanel(slangTrie, cardLayout);
+        MainMenuPanel mainMenuPanel = new MainMenuPanel(cardLayout);
         
         mainPanel.add(mainMenuPanel, "MainMenu");
         mainPanel.add(searchSlangPanel, "SearchSlang");
         mainPanel.add(historyPanel, "History");
         mainPanel.add(onThisDaySlangPanel, "OnThisDaySlang");
+        mainPanel.add(gamePanel, "Game");
         
         frame.add(mainPanel);
         frame.setVisible(true);

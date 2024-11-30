@@ -25,6 +25,10 @@ public class Slang {
         return meanings;
     }
     
+    public String getDefinition() {
+        return String.join(", ", meanings);
+    }
+    
     public String getFullData() {
     	return "Word: " + word + "\n" + "Meanings: " + String.join(", ", meanings);
     }

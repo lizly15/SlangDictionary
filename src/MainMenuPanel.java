@@ -36,6 +36,12 @@ public class MainMenuPanel extends JPanel {
             }
         });
         JButton gameButton = new JButton("Game");
+        gameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(getParent(), "Game");
+            }
+        });
         JButton settingButton = new JButton("Setting");
 
         gbc.gridy = 0;
