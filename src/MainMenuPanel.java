@@ -29,6 +29,12 @@ public class MainMenuPanel extends JPanel {
         });
         
         JButton onThisDayButton = new JButton("On this day slang word");
+        onThisDayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(getParent(), "OnThisDaySlang");
+            }
+        });
         JButton gameButton = new JButton("Game");
         JButton settingButton = new JButton("Setting");
 

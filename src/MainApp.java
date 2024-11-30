@@ -14,16 +14,16 @@ public class MainApp {
         Trie slangTrie = new Trie(); 
         DictionaryDataStructure dict = new DictionaryDataStructure();
         dict.readFiles(slangTrie);
-        
-        slangTrie.randomSlang().printData();
 
         MainMenuPanel mainMenuPanel = new MainMenuPanel(cardLayout);
         HistoryPanel historyPanel = new HistoryPanel(cardLayout);
         SearchSlangPanel searchSlangPanel = new SearchSlangPanel(slangTrie, cardLayout, historyPanel);
+        OnThisDaySlangPanel onThisDaySlangPanel = new OnThisDaySlangPanel(slangTrie, cardLayout);
         
         mainPanel.add(mainMenuPanel, "MainMenu");
         mainPanel.add(searchSlangPanel, "SearchSlang");
         mainPanel.add(historyPanel, "History");
+        mainPanel.add(onThisDaySlangPanel, "OnThisDaySlang");
         
         frame.add(mainPanel);
         frame.setVisible(true);
